@@ -1,0 +1,353 @@
+/*
+    === unidades de medida ===
+
+    px ->  pixel
+    em ->  relativo al padre (toma como referencia el elemento padre) 1em -> 16px, 2em 32px, 3em 48px, 4em 64px
+    rem -> relativo al documento (toma como referencia el documento) 1rem -> 10px => adaptable a diferentes tamaños
+
+*/
+
+/** ====================== */
+/** === paleta colores === */
+/** ====================== */
+:root {
+    --blanco: #ffffff;
+    --oscuro: #212121;
+    --primario: #ffc107;
+    --secundario: #0097a7;
+    --gris: #757575;   
+    --grisClaro: #dfe9f3; 
+}
+
+/** ========================= */
+/** === estilos generales === */
+/** ========================= */
+
+/* === usar rem === */
+
+html {
+    /* reiniciar tamaño al 62.% */
+    /* para aplicar rem */
+    font-size: 62.5%;
+    box-sizing: border-box; /* hack para box model */
+    /* efecto scroll de arriba a abajo "eje y" */
+    scroll-snap-type: y mandatory;
+}
+
+.servicios, 
+.navegacion-principal,
+.formulario {
+    /* scroll snap */
+    /* punto donde se detiene el snap scroll y */ 
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+*, *::before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    /* reiniciar tamaño al 62.% */
+    /* para aplicar rem */
+    font-size: 16px;
+    font-family: 'Krub', sans-serif;
+    /* degradado fondo de abajo a arriba */
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco) 100% );
+}
+
+.contenedor {
+    max-width: 120rem;       /* 1200 px como máximo */
+    /* margin -> en que posicion se coloca un elemento */
+    /* up right down left -> sentido agujas reloj */
+    margin: 0 auto 0 auto;
+}
+
+.boton {
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 3rem;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;   
+    border-radius: .5rem; 
+    width: 90%;
+    text-align: center;
+    /* border: none; */
+}
+
+@media (min-width: 768px) {
+    .boton {
+        width: auto;
+    }
+}
+
+.boton:hover {
+    cursor: pointer;
+}
+
+.sombra {
+    -webkit-box-shadow: -5px 3px 8px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    -5px 3px 8px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         -5px 3px 8px 0px rgba(50, 50, 50, 0.75);
+    background-color: var(--blanco); 
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+/** ================== */
+/** === tipografía === */
+/** ================== */
+
+h1 {
+    font-size: 3.8rem;      /* 38 px */
+}
+
+h2 {
+    font-size: 2.8rem;      /* 28 px */
+}
+
+h3 {
+    font-size: 1.8rem;      /* 18 px */
+}
+
+h1, h2, h3 {
+    text-align: center; 
+}
+
+/** ================== */
+/** === utilidades === */
+/** ================== */
+
+.w-sm-100 {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .w-sm-100 {
+        width: auto;
+    }
+}
+
+.flex {
+    display: flex;
+}
+
+.alinear-derecha {
+    justify-content: flex-end;
+}
+
+/** ================ */
+/** === cabecera === */
+/** ================ */
+
+/** === títulos === */
+
+.titulo span {
+    font-size: 2rem;
+}
+
+/** === navegación === */
+
+.nav-bg {
+    background-color: var(--secundario);
+}
+
+.navegacion-principal {    
+    display: flex;
+    flex-direction: column;    
+}
+
+@media (min-width: 768px) {
+    .navegacion-principal {
+        flex-direction: row; 
+        justify-content: space-between;       
+    }
+}
+
+.navegacion-principal a {
+    display: block;
+    text-align: center;
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+    /* padding -> ensanchar elemento */
+    /* up right down left -> sentido agujas reloj */
+    padding: 1rem;  /* 1rem en las 4 direcciones */
+}
+
+.navegacion-principal a:hover {
+    background-color: var(--primario);
+    color: var(--oscuro);
+}
+
+/** ================= */
+/** === ubicación === */
+/** ================= */
+
+.hero {
+    background-image: url(../img/hero.jpg);
+    background-repeat: no-repeat;
+    /* toma todo el ancho disponible */
+    background-size: cover;
+    height: 450px;    
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.contenido-hero {
+    position: absolute;
+    /* sombra */
+    background-color: rgba(0, 0, 0, .7); 
+    /* toma todo el espacio disponible para la sombra */
+    width: 100%;
+    height: 100%;
+    /* centrar contenido vertical y horizontal */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido-hero h2, .contenido-hero p {
+    color: var(--blanco);
+}
+
+.contenido-hero .ubicacion {
+    display: flex;
+    align-items: center
+}
+
+
+/** =========================== */
+/** === contenido principal === */
+/** =========================== */
+
+/** === servicios === */
+@media (min-width: 768px) {
+    .servicios {
+        display: grid;
+        /* puedes definir contenido en las 2 dimensiones x, y */
+        /* 3 columnas - 3 fracciones */
+        grid-template-columns: 1fr 1fr 1fr;  
+        /* separar columnas */
+        column-gap: 1rem;
+    }
+}
+
+.servicio {
+    /* alinear los iconos */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.servicio h3 {
+    color: var(--secundario);
+    font-weight: 700;  
+}
+
+.servicio p {
+    /* interlineado */
+    line-height: 2;
+    text-align: center;
+}
+
+.servicio .iconos {
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    /* crear circulo */
+    border-radius: 50%;
+    /* centrar iconos horizontal y vertical */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/** =========================== */
+/** === formulario contacto === */
+/** =========================== */
+
+.formulario {
+    background-color: var(--gris);
+    /* utilizar el valor más pequeño entre 600px y el 100% */
+    /* ahora usar media querys */
+    width: min(60rem, 100% );
+    /* centrar con margin, si el padre no tiene d-flex */
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.formulario fieldset {
+    border: none;
+}
+
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--primario);
+}
+
+@media (min-width: 768px) {
+    /* modificar formulario inputs arriba, crear dos colum */
+    .contenedor-campos {
+        display: grid;
+        /* definir areas de las columnas */
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto 20rem;
+        column-gap: 1rem;
+    }  
+
+    /* seleccionar 3º div "correo" en las clases "campo" */
+    /* y evito crear una clase extra */
+    .campo:nth-child(3),
+    .campo:nth-child(4)
+    {
+        /* posicionar un elemento */
+        /* extender/agrandar input y textarea del formulario*/
+        grid-column: 1 / 3;  /* va de la 1 a la 3, extender */
+        
+    }
+}
+
+
+.campo {
+    margin-bottom: 1rem;
+}
+
+.campo label {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    /* cada label toma todo el espacio disponible */
+    display: block;
+}
+
+.campo textarea {
+    height: 20rem;
+}
+
+.input-text {
+    /* cada input toma todo el espacio disponible */
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+
+/** ============== */
+/** === footer === */
+/** ============== */
+.footer {
+    text-align: center;
+    /* font-weight: bold; */
+    text-shadow: -2px -1px 1px rgba(150, 150, 154, 1);
+}
